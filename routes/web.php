@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DemaController;
 use App\Http\Controllers\Exam\FirstController;
+use App\Http\Controllers\Exam\SecondController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,21 @@ Route::get('/server', DemaController::class);
 
 
 Route::get('/country', [FirstController::class, 'country'])->middleware('Morning');
+
+
+
+Route::get('/load/stu', [FirstController::class, 'loader_form'])->name('stu.store');
+
+Route::post('/store/stu', [FirstController::class, 'store'])->name('stu.store');
+
+Route::get('/second', [SecondController::class, 'testTwo']);
+
+
+
+
+
+
+
 
 
 Route::get('/dashboard', function () {
