@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Exam;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Exam\SecondController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FirstController extends Controller
 {
@@ -35,6 +37,9 @@ class FirstController extends Controller
             'password' => 'required|min:8|max:32'
         ]);
 
-        dd($request->all());
+        // dd($request->all());
+
+        Log::channel('contactstore')->info('The form submitted by: ' .rand(1, 30));
+        return redirect()->back();
     }
 }

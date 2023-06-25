@@ -48,10 +48,20 @@ Route::post('/contact/store', [FirstController::class, 'store'])->name('contact.
 
 
 
+Route::get('/logg', function (Request $request) {
+    $log_file = file(storage_path() . '/logs/contact.log');
+
+    $collection = [];
+    foreach($log_file as $line_num => $line){
+        $collection[] = array('line' => $line_num, 'contact' => htmlspecialchars($line));
+    }
+
+    dd($collection);
+});
+
+
 
 Route::get('/server', DemaController::class);
-
-
 
 
 Route::get('/country', [FirstController::class, 'country'])->middleware('Morning');
