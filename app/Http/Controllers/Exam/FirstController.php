@@ -13,6 +13,13 @@ class FirstController extends Controller
         return view('contact');
     }
 
+    // public function contact_store(Request $request) {
+
+    // }
+
+
+
+
     public function country() {
         return view('morning');
     }
@@ -22,10 +29,12 @@ class FirstController extends Controller
     }
 
     public function store(Request $request) {
-        // dd($request->all());
+        $request->validate([
+            'name' => 'required|max:55',
+            'email' => 'required|max:80',
+            'password' => 'required|min:8|max:32'
+        ]);
 
-        // return redirect()->action([SecondController::class, 'testTwo']);
-
-        return redirect()->back()->with('success', 'Data Inserted!');
+        dd($request->all());
     }
 }

@@ -4,7 +4,8 @@ use App\Http\Controllers\DemaController;
 use App\Http\Controllers\Exam\FirstController;
 use App\Http\Controllers\Exam\SecondController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +44,14 @@ Route::get('/testtwo', function () {
 // Route::get('/contact', function () {return view('contact');})->name('contact.us');
 Route::get('/contact', [FirstController::class, 'index'])->name('contact.us');
 
+Route::post('/contact/store', [FirstController::class, 'store'])->name('contact.store');
+
+
+
 
 Route::get('/server', DemaController::class);
+
+
 
 
 Route::get('/country', [FirstController::class, 'country'])->middleware('Morning');
@@ -58,9 +65,17 @@ Route::post('/store/stu', [FirstController::class, 'store'])->name('stu.store');
 Route::get('/second', [SecondController::class, 'testTwo']);
 
 
+Route::get('/test/sess', function(Request $request){
+    session(['name' => 'Sunny']);
+    $request->session()->put('age', '22');
+});
 
 
+Route::get('/sess/all', function(Request $request){
+    return $request->session()->all();
 
+    // $request->session()->flush();
+});
 
 
 
